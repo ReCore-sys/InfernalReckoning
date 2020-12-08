@@ -1,0 +1,3 @@
+displayName = Infernal Reckoning
+author = ReCore
+version = 0.1
