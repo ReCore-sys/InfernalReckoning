@@ -9,7 +9,7 @@ namespace InfernalReckoning.Projectiles
     {
         public override void SetDefaults()
         {
-            projectile.Name = "Test Bullet"; //Name of the projectile, only shows this if you get killed by it
+            projectile.Name = "The Boltor"; //Name of the projectile, only shows this if you get killed by it
             projectile.width = 14; //Set the hitbox width
             projectile.height = 14; //Set the hitbox height
             drawOffsetX = -23;
@@ -31,10 +31,10 @@ namespace InfernalReckoning.Projectiles
             projectile.rotation = projectile.velocity.ToRotation();
             Lighting.AddLight(projectile.position, 0.5f, 0.25f, 0.125f);
         }
-        public override Color? GetAlpha(Color lightColor)
+        /*public override Color? GetAlpha(Color lightColor)
         {
             return Color.Lerp(lightColor, new Color(1f, 1f, 1f), 0.5f);
-        }
+        }*/
         public override bool PreKill(int timeLeft)
         {
             projectile.tileCollide = false;

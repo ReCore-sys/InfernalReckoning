@@ -1,4 +1,6 @@
-Infernal Reckoning is a mod based around ritual and sacrifice. Currently it is in beta meaning not much will work and some items will be unobtainable. I also need to do balancing so that will be a pain. Oh and excuse the altar sprite, it's a placeholder till one of the guys does a better one.
+Infernal Reckoning is a mod based around ritual and sacrifice. Currently it is in beta meaning not much will work and some items will be unobtainable like the boss summoner. I also need to do balancing so that will be a pain.
 
 Changelog:
+0.1.1: Improved altar sprite and changed the tooltip of the boltor rounds.
+
 0.1: Mod was created and added stuff like a boss, a couple guns and spirit dropping. The spirit is an item for now but later it will be something that is stored in an accessory.
