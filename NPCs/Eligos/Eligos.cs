@@ -61,7 +61,7 @@ namespace InfernalReckoning.NPCs.Eligos
                     Vector2 direction = targetPosition - position;
                     direction.Normalize();
                     float speed = 10f;
-                    int type = ProjectileID.DemonSickle;
+                    int type = mod.ProjectileType("Bloodblade");
                     int damage = 40;
                     Projectile.NewProjectile(position, direction * speed, type, damage, 0f, Main.myPlayer);
                 }
