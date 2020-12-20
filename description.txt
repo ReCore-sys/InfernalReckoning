@@ -1,6 +1,9 @@
-Infernal Reckoning is a mod based around ritual and sacrifice. Currently it is in beta meaning not much will work and some items will be unobtainable like the boss summoner. I also need to do balancing so that will be a pain.
+Infernal Reckoning is a mod based around ritual and sacrifice. Currently it is in beta meaning not much will work and some items will be unobtainable like the boss summoner. I also need to do balancing so that will be a pain. 
+Questions? Bugs? Ideas? Come see us in the discord server! The website below is a link to the server.
 
 Changelog:
+0.2.0: I though this way cool enough to warrant a "minor update" title. Spirit is now a thing! You get it from murdering stuff and can use it in crafting and weapons. Later I will do some method of showing you how much Spirit you need for each item to craft.
+
 0.1.2: Turns out, it's hard to debug when terraria does not work. The altar sprite was messed up in the last update but now it's fixed. Also changed Eligos's projectile from a demon scyth to a custom projectile. Damage also doubled and idk why. Have fun with that.
 
 0.1.1: Improved altar sprite and changed the tooltip of the boltor rounds.

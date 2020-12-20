@@ -1,3 +1,5 @@
 displayName = Infernal Reckoning
 author = ReCore
-version = 0.1.2
+version = 0.2.0
+homepage = https://discord.gg/7yVD6VB5rS
+buildIgnore = *.md

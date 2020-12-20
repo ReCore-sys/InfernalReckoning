@@ -3,10 +3,11 @@ using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Utilities;
 
 namespace InfernalReckoning.NPCs.Eligos
 {
-    // Party Zombie is a pretty basic clone of a vanilla NPC. To learn how to further adapt vanilla NPC behaviors, see https://github.com/tModLoader/tModLoader/wiki/Advanced-Vanilla-Code-Adaption#example-npc-npc-clone-with-modified-projectile-hoplite
+    // Party Zombie is a pretty basic clone of a vanilla NPC. To learn how to further adapt vanilla NPC behaviors, see https://github.com/tModLoader/tModLoader/wispirit/Advanced-Vanilla-Code-Adaption#example-npc-npc-clone-with-modified-projectile-hoplite
     public class Eligos : ModNPC
     {
         public override void SetStaticDefaults()
@@ -15,6 +16,14 @@ namespace InfernalReckoning.NPCs.Eligos
             Main.npcFrameCount[npc.type] = 4;
         }
 
+        public override void NPCLoot()
+        {
+            var dropChooser = new WeightedRandom<int>();
+            dropChooser.Add(ModContent.ItemType<Items.spirit>());
+            //dropChooser.Add(ModContent.ItemType<Items.Armor.BunnyMask>());
+            int choice = dropChooser;
+            Item.NewItem(npc.getRect(), choice);
+        }
         public override void SetDefaults()
         {
             npc.width = 100;
@@ -338,6 +347,8 @@ namespace InfernalReckoning.NPCs.Eligos
         }
     }
 }
+
+
 /*public override void HitEffect(int hitDirection, double damage)
 {
 			for (int i = 0; i < 10; i++) {

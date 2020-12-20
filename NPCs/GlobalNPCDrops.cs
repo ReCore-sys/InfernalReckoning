@@ -1,6 +1,6 @@
+using InfernalReckoning.Items;
 using Terraria;
 using Terraria.ModLoader;
-using InfernalReckoning.Items;
 
 namespace InfernalReckoning.NPCs
 {
@@ -14,7 +14,7 @@ namespace InfernalReckoning.NPCs
             {
                 Item.NewItem(npc.getRect(), ModContent.ItemType<spirit>());
             }
-            /*if ((npc.type == NPCID.Pumpking && Main.pumpkinMoon || npc.type == NPCID.IceQueen && Main.snowMoon) && NPC.waveNumber > 10)
+            /*if ((npc.type == NPCID.Pumpspiritng && Main.pumpspiritnMoon || npc.type == NPCID.IceQueen && Main.snowMoon) && NPC.waveNumber > 10)
 			{
 				int chance = NPC.waveNumber - 10;
 				if (Main.expertMode)
@@ -36,7 +36,7 @@ namespace InfernalReckoning.NPCs
 					{
 						stack++;
 					}
-					string type = npc.type == NPCID.Pumpking ? "ScytheBlade" : "Icicle";
+					string type = npc.type == NPCID.Pumpspiritng ? "ScytheBlade" : "Icicle";
 					Item.NewItem(npc.getRect(), mod.ItemType(type), stack);
 				}
 			}*/
@@ -145,7 +145,7 @@ namespace InfernalReckoning.NPCs
 			}
 		}
 
-		// If the player clicks any chat button and has the stinky debuff, prevent the button from working.
+		// If the player clicks any chat button and has the stinky debuff, prevent the button from worspiritng.
 		public override bool PreChatButtonClicked(NPC npc, bool firstButton) {
 			return !Main.LocalPlayer.HasBuff(BuffID.Stinky);
 		}*/

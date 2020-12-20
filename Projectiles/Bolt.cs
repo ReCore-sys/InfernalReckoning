@@ -9,7 +9,7 @@ namespace InfernalReckoning.Projectiles
     {
         public override void SetDefaults()
         {
-            projectile.Name = "The Boltor"; //Name of the projectile, only shows this if you get killed by it
+            projectile.Name = "The Boltor"; //Name of the projectile, only shows this if you get Killed by it
             projectile.width = 14; //Set the hitbox width
             projectile.height = 14; //Set the hitbox height
             drawOffsetX = -23;

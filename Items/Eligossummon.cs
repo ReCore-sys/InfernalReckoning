@@ -1,46 +1,44 @@
-using System;
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace InfernalReckoning.Items
 {
-	public class Eligossummon : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			Tooltip.SetDefault("This can't end well...");
-			DisplayName.SetDefault("Rune of Eligos");
+    public class Eligossummon : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            Tooltip.SetDefault("This can't end well...");
+            DisplayName.SetDefault("Rune of Eligos");
 
-		}
+        }
 
-		public override void SetDefaults()
-		{
-			item.width = 20;
-			item.height = 20;
-			item.value = Item.sellPrice(0, 50, 0, 0);
-			item.rare = 11;
-			item.useAnimation = 45;
-			item.useTime = 45;
-			item.useStyle = 4;
-			item.UseSound = SoundID.Item44;
-		}
-		// We use the CanUseItem hook to prevent a player from using this item while the boss is present in the world.
-		public override bool CanUseItem(Player player)
-		{
-			return !Main.dayTime;
-		}
+        public override void SetDefaults()
+        {
+            item.width = 20;
+            item.height = 20;
+            item.value = Item.sellPrice(0, 50, 0, 0);
+            item.rare = 11;
+            item.useAnimation = 45;
+            item.useTime = 45;
+            item.useStyle = 4;
+            item.UseSound = SoundID.Item44;
+        }
+        // We use the CanUseItem hook to prevent a player from using this item while the boss is present in the world.
+        public override bool CanUseItem(Player player)
+        {
+            return !Main.dayTime;
+        }
 
-		public override bool UseItem(Player player)
-		{
-			if (Main.netMode != 1)
-			{
-				NPC.NewNPC((int)player.Center.X, (int)player.Center.Y - 240, mod.NPCType("Eligos"));
-			}
-			return true;
-		}
-		/*public override void AddRecipes()
+        public override bool UseItem(Player player)
+        {
+            if (Main.netMode != 1)
+            {
+                NPC.NewNPC((int)player.Center.X, (int)player.Center.Y - 240, mod.NPCType("Eligos"));
+            }
+            return true;
+        }
+        /*public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(ItemID.DirtBlock);
@@ -51,11 +49,11 @@ namespace InfernalReckoning.Items
 			recipe.SetResult(this, 999);
 			recipe.AddRecipe();*/
 
-		/*
+        /*
 		// Start a new Recipe. (Prepend with "ModRecipe " if 1st recipe in code block.)
 		recipe = new ModRecipe(mod);
 		// Add a Vanilla Ingredient. 
-		// Look up ItemIDs: https://github.com/tModLoader/tModLoader/wiki/Vanilla-Item-IDs
+		// Look up ItemIDs: https://github.com/tModLoader/tModLoader/wispirit/Vanilla-Item-IDs
 		// To specify more than one ingredient, use multiple recipe.AddIngredient() calls.
 		recipe.AddIngredient(ItemID.DirtBlock);
 		// An optional 2nd argument will specify a stack of the item. 
@@ -67,10 +65,10 @@ namespace InfernalReckoning.Items
 		// an alternate approach to the above.
 		recipe.AddIngredient(ItemType<EquipMaterial>(), 3);
 		// RecipeGroups allow you create a recipe that accepts items from a group of similar ingredients. For example, all varieties of Wood are in the vanilla "Wood" Group
-		recipe.AddRecipeGroup("Wood"); // check here for other vanilla groups: https://github.com/tModLoader/tModLoader/wiki/Intermediate-Recipes#using-existing-recipegroups
+		recipe.AddRecipeGroup("Wood"); // check here for other vanilla groups: https://github.com/tModLoader/tModLoader/wispirit/Intermediate-Recipes#using-existing-recipegroups
 		// Here is using a mod recipe group. Check out ExampleMod.AddRecipeGroups() to see how to register a recipe group.
 		recipe.AddRecipeGroup("ExampleMod:ExampleItem", 2);
-		// To specify a crafting station, specify a tile. Look up TileIDs: https://github.com/tModLoader/tModLoader/wiki/Vanilla-Tile-IDs
+		// To specify a crafting station, specify a tile. Look up TileIDs: https://github.com/tModLoader/tModLoader/wispirit/Vanilla-Tile-IDs
 		recipe.AddTile(TileID.WorkBenches);
 		// A mod Tile example. To specify more than one crafting station, use multiple recipe.AddTile() calls.
 		recipe.AddTile(mod, "ExampleWorkbench");
@@ -83,6 +81,6 @@ namespace InfernalReckoning.Items
 		// Finish your recipe
 		recipe.AddRecipe();
 		*/
-	}
+    }
 }
 
