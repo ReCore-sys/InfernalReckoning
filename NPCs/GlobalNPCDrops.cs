@@ -6,6 +6,7 @@ namespace InfernalReckoning.NPCs
 {
     public class GlobalNPCDrops : GlobalNPC
     {
+<<<<<<< Updated upstream
         public override bool InstancePerEntity => true;
 
         public override void NPCLoot(NPC npc)
@@ -150,5 +151,8 @@ namespace InfernalReckoning.NPCs
 			return !Main.LocalPlayer.HasBuff(BuffID.Stinky);
 		}*/
         }
+=======
+        
+>>>>>>> Stashed changes
     }
 }

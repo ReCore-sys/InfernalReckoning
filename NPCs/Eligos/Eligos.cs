@@ -1,340 +1,427 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace InfernalReckoning.NPCs.Eligos
 {
+<<<<<<< Updated upstream
     // Party Zombie is a pretty basic clone of a vanilla NPC. To learn how to further adapt vanilla NPC behaviors, see https://github.com/tModLoader/tModLoader/wiki/Advanced-Vanilla-Code-Adaption#example-npc-npc-clone-with-modified-projectile-hoplite
+=======
+>>>>>>> Stashed changes
     public class Eligos : ModNPC
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Eligos, The Commander");
-            Main.npcFrameCount[npc.type] = 4;
+            DisplayName.SetDefault("Eligos");
         }
+<<<<<<< Updated upstream
 
+=======
+        public override void NPCLoot()
+        {
+            var dropChooser = new WeightedRandom<int>();
+            dropChooser.Add(ModContent.ItemType<Items.Weapons.Attarax>());
+            dropChooser.Add(ModContent.ItemType<Items.Weapons.Vorax>());
+            dropChooser.Add(ModContent.ItemType<Items.Weapons.Rubico>());
+            Item.NewItem(npc.getRect(), mod.ItemType("Veerium"), Main.rand.Next(8, 15));
+            int choice = dropChooser;
+            Item.NewItem(npc.getRect(), choice);
+        }
+>>>>>>> Stashed changes
         public override void SetDefaults()
         {
             npc.width = 100;
             npc.height = 150;
-            npc.lifeMax = 5000;
-            npc.damage = 90;
-            npc.defense = 50;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath2;
+            npc.damage = 140;
+            npc.defense = 14;
+            npc.boss = true;
+            npc.HitSound = SoundID.NPCHit4;
+            npc.DeathSound = SoundID.NPCDeath14;
             npc.value = 60f;
             npc.knockBackResist = 0f;
-            npc.aiStyle = 3;
-            aiType = -1;
+            npc.aiStyle = -1;
+            //aiType = 10;
+            animationType = -1;
             npc.noGravity = true;
             npc.noTileCollide = true;
-            npc.boss = true;
-            //banner = Item.NPCtoBanner(NPCID.Zombie);
-            //bannerItem = Item.BannerToItem(banner);
+            npc.lifeMax = 40000;
+            npc.buffImmune[20] = true;
         }
 
+        public override void BossLoot(ref string name, ref int potionType)
+        {
+            potionType = ItemID.HealingPotion;
+        }
 
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            npc.lifeMax = (int)(npc.lifeMax * 0.6f * bossLifeScale);
+            npc.damage = (int)(npc.damage * .6f);
+        }
+
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        {
+            return 0f;
+        }
+        public static Vector2 PolarVector(float radius, float theta)
+        {
+            return new Vector2((float)Math.Cos(theta), (float)Math.Sin(theta)) * radius;
+        }
+        public static float AngularDifference(float angle1, float angle2)
+        {
+            angle1 = PolarVector(1f, angle1).ToRotation();
+            angle2 = PolarVector(1f, angle2).ToRotation();
+            if (Math.Abs(angle1 - angle2) > Math.PI)
+            {
+                return (float)Math.PI * 2 - Math.Abs(angle1 - angle2);
+            }
+            return Math.Abs(angle1 - angle2);
+        }
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            if (npc.life <= 0)
+            {
+                Vector2 pos = npc.Center + PolarVector(98, npc.rotation) + PolarVector(120, npc.rotation + (float)Math.PI / 2);
+
+
+                pos = npc.Center + PolarVector(98, npc.rotation) + PolarVector(120, npc.rotation + (float)Math.PI / 2);
+
+
+                pos = npc.Center + PolarVector(144, npc.rotation) + PolarVector(67, npc.rotation + (float)Math.PI / 2);
+
+                pos = npc.Center + PolarVector(144, npc.rotation) + PolarVector(-67, npc.rotation + (float)Math.PI / 2);
+
+
+                pos = npc.Center + PolarVector(-15, npc.rotation) + PolarVector(102, npc.rotation + (float)Math.PI / 2);
+
+                pos = npc.Center + PolarVector(-15, npc.rotation) + PolarVector(-102, npc.rotation + (float)Math.PI / 2);
+
+
+                pos = npc.Center + PolarVector(-15, npc.rotation) + PolarVector(0, npc.rotation + (float)Math.PI / 2);
+
+                pos = npc.Center + PolarVector(-15, npc.rotation) + PolarVector(0, npc.rotation + (float)Math.PI / 2);
+
+                pos = npc.Center + PolarVector(-154, npc.rotation) + PolarVector(0, npc.rotation + (float)Math.PI / 2);
+
+                pos = npc.Center + PolarVector(77, npc.rotation) + PolarVector(0, npc.rotation + (float)Math.PI / 2);
+
+                pos = npc.Center + PolarVector(166, npc.rotation) + PolarVector(0, npc.rotation + (float)Math.PI / 2);
+
+
+                pos = npc.Center + PolarVector(-65, npc.rotation) + PolarVector(79, npc.rotation + (float)Math.PI / 2);
+
+                pos = npc.Center + PolarVector(-65, npc.rotation) + PolarVector(-79, npc.rotation + (float)Math.PI / 2);
+
+            }
+        }
+
+        private Vector2 MissileOffset = new Vector2();
+        private const int defaultFrameX = 22;
+        private const int defaultFrameY = 148;
+
+
+
+        public const int RingRadius = 300;
+        public const int RingDustQty = 400;
+        public int damage = 30;
+        public int switchTime = 150;
+        public int moveCount = -1;
+        public int fireCount = 0;
+        public int attackType = 1;
+        public int AI_Timer = 0;
+        public int AI_Timer2 = 0;
+        public bool runOnce = true;
+        private Vector2 moveTo;
+        private float orbSpeed = 12;
+        private bool angry;
+        private bool justTeleported;
+        private int missileReloadCounter;
+        private int missileFrame = 0;
+        private int missileFlashCounter;
+        private int missileGlowFrame = 0;
+        private float angle = (float)Math.PI / 6;
         public int demoncount;
-        public int Timer;
         public int Timer2;
+        public int Timer;
+
         public override void AI()
         {
-            if (npc.life < 1000 && demoncount < 15)
             {
-                Random rnd = new Random();
-                int distance = rnd.Next(-281, 281);
-                int distance2 = rnd.Next(-281, 281);
-                NPC.NewNPC((int)npc.Center.X + distance2, (int)npc.Center.Y + distance, NPCID.Demon);
-                demoncount++;
-            }
-            Timer2++;
-            if (Timer2 > 40)
-            {
-                npc.TargetClosest();
-                if (npc.HasValidTarget && Main.netMode != NetmodeID.MultiplayerClient)
+                if (npc.life < 1000 && demoncount < 15)
                 {
-
-                    Vector2 position = npc.Center;
-                    Vector2 targetPosition = Main.player[npc.target].Center;
-                    Vector2 direction = targetPosition - position;
-                    direction.Normalize();
-                    float speed = 10f;
-                    int type = mod.ProjectileType("Bloodblade");
-                    int damage = 40;
-                    Projectile.NewProjectile(position, direction * speed, type, damage, 0f, Main.myPlayer);
+                    Random rnd = new Random();
+                    int distance = rnd.Next(-281, 281);
+                    int distance2 = rnd.Next(-281, 281);
+                    NPC.NewNPC((int)npc.Center.X + distance2, (int)npc.Center.Y + distance, NPCID.Demon);
+                    demoncount++;
                 }
-                Timer2 = 0;
-            }
-            Timer++;
-            if (Timer > 500)
-            {
                 Timer2++;
-                Timer++;
-                if (Timer > 20)
+                if (Timer2 > 40)
                 {
-                    NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y + 64, NPCID.Demon);
-                    NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y - 64, NPCID.Demon);
-                    NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.RedDevil);
-                    Timer = 0;
-                }
-                //AI code
-                if (npc.ai[0] == 0f)
-                {
-                    if (Main.netMode == NetmodeID.MultiplayerClient)
+                    npc.TargetClosest();
+                    if (npc.HasValidTarget && Main.netMode != NetmodeID.MultiplayerClient)
                     {
+
+                        Vector2 position = npc.Center;
+                        Vector2 targetPosition = Main.player[npc.target].Center;
+                        Vector2 direction = targetPosition - position;
+                        direction.Normalize();
+                        float speed = 10f;
+                        int type = mod.ProjectileType("Bloodblade");
+                        int damage = 40;
+                        Projectile.NewProjectile(position, direction * speed, type, damage, 0f, Main.myPlayer);
+                    }
+                    Timer2 = 0;
+                }
+                Timer++;
+                if (Timer > 500)
+                {
+                    Timer2++;
+                    Timer++;
+                    if (Timer > 20)
+                    {
+                        NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y + 64, NPCID.Demon);
+                        NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y - 64, NPCID.Demon);
+                        NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.RedDevil);
+                        Timer = 0;
+                    }
+                }
+                missileFlashCounter++;
+                if (missileFlashCounter > 60)
+                {
+                    missileFlashCounter = 0;
+                }
+                else if (missileFlashCounter > 30)
+                {
+                    missileGlowFrame = 1;
+                }
+                else
+                {
+                    missileGlowFrame = 0;
+                }
+                if (missileReloadCounter > 0)
+                {
+                    missileReloadCounter--;
+                }
+
+                //Main.NewText(npc.Size);
+                //Main.NewText(npc.scale);
+                if (npc.life < npc.lifeMax / 2 && Main.expertMode)
+                {
+                    angry = true;
+                }
+                switchTime = (int)(((float)npc.life / (float)npc.lifeMax) * 60) + 90;
+                Player player = Main.player[npc.target];
+                npc.TargetClosest(true);
+                if (runOnce)
+                {
+                    if (Main.netMode != 1)
+                    {
+                        npc.ai[0] = Main.rand.NextFloat(-(float)Math.PI, (float)Math.PI);
+                        npc.netUpdate = true;
+                    }
+                    runOnce = false;
+                    moveTo = new Vector2(player.Center.X + (float)Math.Cos(npc.ai[0]) * 700, player.Center.Y + (float)Math.Sin(npc.ai[0]) * 400);
+                }
+                AI_Timer++;
+                AI_Timer2++;
+
+                if (Main.expertMode)
+                {
+                    #region exerpt aggression
+
+                    damage = 20;
+
+                    #endregion exerpt aggression
+                }
+
+                if (!player.active || player.dead)
+                {
+                    npc.TargetClosest(false);
+                    player = Main.player[npc.target];
+                    if (!player.active || player.dead)
+                    {
+                        npc.velocity = new Vector2(0f, 10f);
+                        if (npc.timeLeft > 10)
+                        {
+                            npc.timeLeft = 10;
+                        }
                         return;
                     }
-                    npc.ai[0] = 1 + Main.rand.Next(2);
-                    npc.netUpdate = true;
                 }
-                if (npc.ai[0] == 1f)
-                {
-                    npc.GivenName = "Eligos, The commander";
-                }
+                //float targetAngle = new Vector2(player.Center.X - npc.Center.X, player.Center.Y - npc.Center.Y).ToRotation();
 
-                if (npc.collideX)
-                {
-                    npc.velocity.X = npc.oldVelocity.X * -0.5f;
-                    if (npc.direction == -1 && npc.velocity.X > 0f && npc.velocity.X < 2f)
-                    {
-                        npc.velocity.X = 2f;
-                    }
-                    if (npc.direction == 1 && npc.velocity.X < 0f && npc.velocity.X > -2f)
-                    {
-                        npc.velocity.X = -2f;
-                    }
-                }
-                if (npc.collideY)
-                {
-                    npc.velocity.Y = npc.oldVelocity.Y * -0.5f;
-                    if (npc.velocity.Y > 0f && npc.velocity.Y < 1f)
-                    {
-                        npc.velocity.Y = 1f;
-                    }
-                    if (npc.velocity.Y < 0f && npc.velocity.Y > -1f)
-                    {
-                        npc.velocity.Y = -1f;
-                    }
-                }
-                if (Main.dayTime && (double)npc.position.Y <= Main.worldSurface * 16.0)
-                {
-                    if (npc.timeLeft > 10)
-                    {
-                        npc.timeLeft = 10;
-                    }
-                    npc.directionY = -1;
-                    if (npc.velocity.Y > 0f)
-                    {
-                        npc.directionY = 1;
-                    }
-                    npc.direction = -1;
-                    if (npc.velocity.X > 0f)
-                    {
-                        npc.direction = 1;
-                    }
-                }
-                else
-                {
-                    npc.TargetClosest(true);
-                }
+                //npc.rotation = targetAngle;
 
-                if (npc.ai[0] == 2f)
+                /*
+                if( AI_Timer<6)
                 {
-                    if (npc.direction == -1 && npc.velocity.X > -6f)
-                    {
-                        npc.velocity.X -= 0.1f;
-                        if (npc.velocity.X > 6f)
-                        {
-                            npc.velocity.X -= 0.1f;
-                        }
-                        else if (npc.velocity.X > 0f)
-                        {
-                            npc.velocity.X += 0.05f;
-                        }
-                        if (npc.velocity.X < -6f)
-                        {
-                            npc.velocity.X = -6f;
-                        }
-                    }
-                    else if (npc.direction == 1 && npc.velocity.X < 6f)
-                    {
-                        npc.velocity.X += 0.1f;
-                        if (npc.velocity.X < -6f)
-                        {
-                            npc.velocity.X += 0.1f;
-                        }
-                        else if (npc.velocity.X < 0f)
-                        {
-                            npc.velocity.X -= 0.05f;
-                        }
-                        if (npc.velocity.X > 6f)
-                        {
-                            npc.velocity.X = 6f;
-                        }
-                    }
-                    if (npc.directionY == -1 && npc.velocity.Y > -4f)
-                    {
-                        npc.velocity.Y -= 0.1f;
-                        if (npc.velocity.Y > 4f)
-                        {
-                            npc.velocity.Y = npc.velocity.Y - 0.1f;
-                        }
-                        else if (npc.velocity.Y > 0f)
-                        {
-                            npc.velocity.Y += 0.05f;
-                        }
-                        if (npc.velocity.Y < -4f)
-                        {
-                            npc.velocity.Y = -4f;
-                        }
-                    }
-                    else if (npc.directionY == 1 && npc.velocity.Y < 4f)
-                    {
-                        npc.velocity.Y += 0.1f;
-                        if (npc.velocity.Y < -4f)
-                        {
-                            npc.velocity.Y += 0.1f;
-                        }
-                        else if (npc.velocity.Y < 0f)
-                        {
-                            npc.velocity.Y -= 0.05f;
-                        }
-                        if (npc.velocity.Y > 4f)
-                        {
-                            npc.velocity.Y = 4f;
-                        }
-                    }
+                Vector2 teleTo = new Vector2(player.Center.X + 400f, player.Center.Y + -400f );
+                npc.position = (teleTo);
                 }
-                else
-                {
-                    if (npc.direction == -1 && npc.velocity.X > -4f)
-                    {
-                        npc.velocity.X -= 0.1f;
-                        if (npc.velocity.X > 4f)
-                        {
-                            npc.velocity.X -= 0.1f;
-                        }
-                        else if (npc.velocity.X > 0f)
-                        {
-                            npc.velocity.X += 0.05f;
-                        }
-                        if (npc.velocity.X < -4f)
-                        {
-                            npc.velocity.X = -4f;
-                        }
-                    }
-                    else if (npc.direction == 1 && npc.velocity.X < 4f)
-                    {
-                        npc.velocity.X += 0.1f;
-                        if (npc.velocity.X < -4f)
-                        {
-                            npc.velocity.X += 0.1f;
-                        }
-                        else if (npc.velocity.X < 0f)
-                        {
-                            npc.velocity.X -= 0.05f;
-                        }
-                        if (npc.velocity.X > 4f)
-                        {
-                            npc.velocity.X = 4f;
-                        }
-                    }
-                    if (npc.directionY == -1 && (double)npc.velocity.Y > -1.5)
-                    {
-                        npc.velocity.Y -= 0.04f;
-                        if ((double)npc.velocity.Y > 1.5)
-                        {
-                            npc.velocity.Y -= 0.05f;
-                        }
-                        else if (npc.velocity.Y > 0f)
-                        {
-                            npc.velocity.Y += 0.03f;
-                        }
-                        if ((double)npc.velocity.Y < -1.5)
-                        {
-                            npc.velocity.Y = -1.5f;
-                        }
-                    }
-                    else if (npc.directionY == 1 && (double)npc.velocity.Y < 1.5)
-                    {
-                        npc.velocity.Y += 0.04f;
-                        if ((double)npc.velocity.Y < -1.5)
-                        {
-                            npc.velocity.Y += 0.05f;
-                        }
-                        else if (npc.velocity.Y < 0f)
-                        {
-                            npc.velocity.Y -= 0.03f;
-                        }
-                        if ((double)npc.velocity.Y > 1.5)
-                        {
-                            npc.velocity.Y = 1.5f;
-                        }
-                    }
-                }
+                */
 
-                if (Main.rand.Next(40) == 0)
+                if (AI_Timer > switchTime)
                 {
-                    int dust = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y + (float)npc.height * 0.25f), npc.width, (int)((float)npc.height * 0.5f), 5, npc.velocity.X, 2f, 0, default(Color), 1f);
-                    Main.dust[dust].velocity.X *= 0.5f;
-                    Main.dust[dust].velocity.Y *= 0.1f;
-                }
-                if (npc.wet)
-                {
-                    if (npc.velocity.Y > 0f)
+                    moveCount++;
+                    //Main.NewText(moveCount);
+                    for (int i = 0; i < RingDustQty; i++)
                     {
-                        npc.velocity.Y *= 0.95f;
-                    }
-                    npc.velocity.Y -= 0.5f;
-                    if (npc.velocity.Y < -4f)
-                    {
-                        npc.velocity.Y = -4f;
-                    }
-                    npc.TargetClosest(true);
-                }
+                        float theta = Main.rand.NextFloat(-(float)Math.PI, (float)Math.PI);
 
-                npc.ai[1] += 1f;
-                if (npc.ai[1] >= 180f / npc.ai[0])
-                {
-                    Player player = Main.player[npc.target];
-                    if (player.active && !player.dead)
+                        Dust dust = Dust.NewDustPerfect(npc.Center + PolarVector(RingRadius, theta), mod.DustType("AncientGlow"), PolarVector(-RingRadius / 10, theta));
+                        dust.noGravity = true;
+                    }
+                    if (Main.netMode != 1)
                     {
-                        Vector2 distanceTo = player.Center - npc.Center;
-                        float angleTo = (float)Math.Atan2(distanceTo.Y, distanceTo.X);
-                        if (npc.spriteDirection == -1)
+                        npc.ai[0] = Main.rand.NextFloat(-(float)Math.PI, (float)Math.PI);
+                        npc.netUpdate = true;
+                    }
+                    moveTo = new Vector2(player.Center.X + (float)Math.Cos(npc.ai[0]) * 700, player.Center.Y + (float)Math.Sin(npc.ai[0]) * 400);
+                    if (Main.netMode != 1)
+                    {
+                        npc.ai[2] = moveTo.X;
+                        npc.ai[3] = moveTo.Y;
+                        npc.netUpdate = true;
+                    }
+                    justTeleported = true;
+                    AI_Timer = 0;
+                    AI_Timer2 = 0;
+                }
+                if (moveCount >= 3)
+                {
+                    #region special attacks
+
+                    npc.velocity = new Vector2(0, 0);
+
+                    if (AI_Timer == switchTime / 2)
+                    {
+                        if (Main.netMode != 1)
                         {
-                            angleTo += (float)Math.PI;
-                            angleTo %= 2f * (float)Math.PI;
-                        }
-                        float distance = (float)Math.Sqrt(distanceTo.X * distanceTo.X + distanceTo.Y * distanceTo.Y);
-                        float toleration = (float)Math.PI;
-                        if (distance > 0f)
-                        {
-                            toleration = 1f / distance;
-                        }
-                        if (toleration < 0.1f)
-                        {
-                            toleration = 0.1f;
-                        }
-                        if (Math.Abs(angleTo - npc.rotation) < toleration && Collision.CanHit(npc.position, npc.width, npc.height, player.position, player.width, player.height))
-                        {
-                            Vector2 unit = new Vector2((float)Math.Cos(npc.rotation), (float)Math.Sin(npc.rotation));
-                            unit *= (float)npc.spriteDirection;
-                            float speed = 9f;
-                            int type = 83;
-                            if (npc.ai[0] == 1f)
+                            npc.ai[1] = Main.rand.Next(3);
+                            npc.netUpdate = true;
+                            /*
+                            NPC.NewNPC((int)(player.Center.X + 565.7f), (int)npc.Center.Y, mod.NPCType("AncientMinion"));
+                            NPC.NewNPC((int)(player.Center.X + -565.7f), (int)npc.Center.Y, mod.NPCType("AncientMinion"));
+
+                            if (Main.expertMode)
                             {
-                                speed = 6f;
-                                type = 96;
+                                NPC.NewNPC((int)npc.Center.X, (int)(player.Center.Y + -565.7f), mod.NPCType("AncientMinion"));
+                                NPC.NewNPC((int)npc.Center.X, (int)(player.Center.Y + 565.7f), mod.NPCType("AncientMinion"));
                             }
-                            Projectile.NewProjectile(npc.Center.X + unit.X, npc.Center.Y + unit.Y, speed * unit.X, speed * unit.Y, type, 40, 0f, Main.myPlayer, 0f, 0f);
-                            npc.ai[1] = 0f;
+                            */
+                        }
+
+                        if (npc.ai[1] == 0)
+                        {
+                            Main.PlaySound(25, npc.position, 0);
+                            for (int r = 0; r < 5; r++)
+                            {
+                                if (Main.netMode != 1)
+                                {
+                                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos((npc.rotation + r * (float)Math.PI / 8) - (float)Math.PI / 4) * orbSpeed, (float)Math.Sin((npc.rotation + r * (float)Math.PI / 8) - (float)Math.PI / 4) * orbSpeed, mod.ProjectileType("Bloodblade"), damage, 3f, Main.myPlayer);
+                                }
+                            }
+                        }
+                        if (npc.ai[1] == 1)
+                        {
+                            Main.PlaySound(25, npc.position, 0);
+                            missileReloadCounter = 60;
+                            if (Main.netMode != 1)
+                            {
+                                Projectile.NewProjectile(npc.Center + PolarVector(MissileOffset.X, npc.rotation) + PolarVector(MissileOffset.Y, npc.rotation + (float)Math.PI / 2), PolarVector(orbSpeed, npc.rotation + angle), mod.ProjectileType("BloodBlade"), damage, 3f, Main.myPlayer);
+                                Projectile.NewProjectile(npc.Center + PolarVector(MissileOffset.X, npc.rotation) + PolarVector(-MissileOffset.Y, npc.rotation + (float)Math.PI / 2), PolarVector(orbSpeed, npc.rotation - angle), mod.ProjectileType("BloodBlade"), damage, 3f, Main.myPlayer);
+                            }
+                        }
+                        if (npc.ai[1] == 2)
+                        {
+                            if (Main.netMode != 1)
+                            {
+                                float d = new Vector2(player.Center.X - npc.Center.X, player.Center.Y - npc.Center.Y).ToRotation();
+                                Vector2 pos = npc.Center + PolarVector(200, npc.rotation) + PolarVector(100, npc.rotation + (float)Math.PI / 2);
+                                NPC.NewNPC((int)pos.X, (int)pos.Y, mod.NPCType("AncientMinion"), 0, npc.whoAmI);
+                                pos = npc.Center + PolarVector(200, npc.rotation) + PolarVector(-100, npc.rotation + (float)Math.PI / 2);
+                                NPC.NewNPC((int)pos.X, (int)pos.Y, mod.NPCType("AncientMinion"), 0, npc.whoAmI);
+                                if (angry)
+                                {
+                                    pos = npc.Center + PolarVector(100, npc.rotation) + PolarVector(-200, npc.rotation + (float)Math.PI / 2);
+                                    NPC.NewNPC((int)pos.X, (int)pos.Y, mod.NPCType("AncientMinion"), 0, npc.whoAmI);
+                                    pos = npc.Center + PolarVector(100, npc.rotation) + PolarVector(200, npc.rotation + (float)Math.PI / 2);
+                                    NPC.NewNPC((int)pos.X, (int)pos.Y, mod.NPCType("AncientMinion"), 0, npc.whoAmI);
+                                }
+                            }
                         }
                     }
+                    if (AI_Timer == 3 * switchTime / 4)
+                    {
+                        if (angry)
+                        {
+                            if (npc.ai[1] == 0)
+                            {
+                                Main.PlaySound(25, npc.position, 0);
+                                for (int r = 0; r < 4; r++)
+                                {
+                                    if (Main.netMode != 1)
+                                    {
+                                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos((npc.rotation + r * (float)Math.PI / 6) - (float)Math.PI / 4) * orbSpeed, (float)Math.Sin((npc.rotation + r * (float)Math.PI / 6) - (float)Math.PI / 4) * orbSpeed, mod.ProjectileType("AncientEnergy"), damage, 3f, Main.myPlayer);
+                                    }
+                                }
+                            }
+                            if (npc.ai[1] == 1)
+                            {
+                                Main.PlaySound(25, npc.position, 0);
+                                missileReloadCounter = 60;
+                                if (Main.netMode != 1)
+                                {
+                                    Projectile.NewProjectile(npc.Center + PolarVector(MissileOffset.X, npc.rotation) + PolarVector(MissileOffset.Y, npc.rotation + (float)Math.PI / 2), PolarVector(orbSpeed, npc.rotation + angle), mod.ProjectileType("BloodBlade"), damage, 3f, Main.myPlayer);
+                                    Projectile.NewProjectile(npc.Center + PolarVector(MissileOffset.X, npc.rotation) + PolarVector(-MissileOffset.Y, npc.rotation + (float)Math.PI / 2), PolarVector(orbSpeed, npc.rotation - angle), mod.ProjectileType("BloodBlade"), damage, 3f, Main.myPlayer);
+                                }
+                            }
+                        }
+                        moveCount = -1;
+                    }
+
+                    #endregion special attacks
+                }
+                else
+                {
+                    if (AI_Timer == switchTime / 2)
+                    {
+                        Main.PlaySound(25, npc.position, 0);
+                        if (Main.netMode != 1)
+                        {
+                            Projectile.NewProjectile(npc.Center, new Vector2((float)Math.Cos((npc.rotation)), (float)Math.Sin(npc.rotation)) * orbSpeed, mod.ProjectileType("AncientEnergy"), damage, 3f, Main.myPlayer);
+                        }
+                    }
+                    if (AI_Timer == 3 * switchTime / 4 && angry)
+                    {
+                        Main.PlaySound(25, npc.position, 0);
+                        if (Main.netMode != 1)
+                        {
+                            Projectile.NewProjectile(npc.Center, new Vector2((float)Math.Cos((npc.rotation)), (float)Math.Sin(npc.rotation)) * orbSpeed, mod.ProjectileType("AncientEnergy"), damage, 3f, Main.myPlayer);
+                        }
+                    }
+                }
+                //npc.velocity = (moveTo - npc.Center) * .02f;
+                npc.Center = new Vector2(npc.ai[2], npc.ai[3]);
+
+                if (justTeleported)
+                {
+                    Main.PlaySound(SoundID.Item8, npc.position);
+                    for (int i = 0; i < RingDustQty; i++)
+                    {
+                        float theta = Main.rand.NextFloat(-(float)Math.PI, (float)Math.PI);
+                        Dust dust = Dust.NewDustPerfect(npc.Center, mod.DustType("AncientGlow"), PolarVector(RingRadius / 10, theta));
+                        dust.noGravity = true;
+                    }
+                    justTeleported = false;
                 }
             }
+<<<<<<< Updated upstream
         }
     }
 }
@@ -351,3 +438,42 @@ namespace InfernalReckoning.NPCs.Eligos
 		}
 	}
 }*/
+=======
+
+            /*public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
+            {
+                Rectangle mF = new Rectangle(0, missileGlowFrame * 36, 20, 36);
+
+                /*
+                spriteBatch.Draw(mod.GetTexture("NPCs/AncientMachine/AncientMachineEquipedMissile"), new Vector2(npc.Center.X - Main.screenPosition.X, npc.Center.Y - Main.screenPosition.Y),
+                            new Rectangle(missileGlowFrame * 392, missileFrame*380, 392, 380), drawColor, npc.rotation,
+                            new Vector2(npc.width * 0.5f, npc.height * 0.5f), 1f, SpriteEffects.None, 0f);
+                spriteBatch.Draw(mod.GetTexture("NPCs/AncientMachine/AncientMachineEquipedMissile_Glow"), new Vector2(npc.Center.X - Main.screenPosition.X, npc.Center.Y - Main.screenPosition.Y),
+                            new Rectangle(missileGlowFrame * 392, missileFrame * 380, 392, 380), Color.White, npc.rotation,
+                            new Vector2(npc.width * 0.5f, npc.height * 0.5f), 1f, SpriteEffects.None, 0f);
+                spriteBatch.Draw(mod.GetTexture("NPCs/AncientMachine/BloodBlade"), npc.Center - Main.screenPosition + PolarVector(MissileOffset.X, npc.rotation) + PolarVector(MissileOffset.Y, npc.rotation + (float)Math.PI / 2) + PolarVector(-missileReloadCounter / 2, npc.rotation + angle),
+                            mF, drawColor, npc.rotation + (float)Math.PI / 2 + angle,
+                            new Vector2(mF.Width * 0.5f, mF.Height * 0.5f), 1f, SpriteEffects.None, 0f);
+                spriteBatch.Draw(mod.GetTexture("NPCs/AncientMachine/BloodBlade"), npc.Center - Main.screenPosition + PolarVector(MissileOffset.X, npc.rotation) + PolarVector(-MissileOffset.Y, npc.rotation + (float)Math.PI / 2) + PolarVector(-missileReloadCounter / 2, npc.rotation - angle),
+                            mF, drawColor, npc.rotation + (float)Math.PI / 2 - angle,
+                            new Vector2(mF.Width * 0.5f, mF.Height * 0.5f), 1f, SpriteEffects.None, 0f);
+
+                spriteBatch.Draw(mod.GetTexture("NPCs/AncientMachine/BloodBlade_Glow"), npc.Center - Main.screenPosition + PolarVector(MissileOffset.X, npc.rotation) + PolarVector(MissileOffset.Y, npc.rotation + (float)Math.PI / 2) + PolarVector(-missileReloadCounter / 2, npc.rotation + angle),
+                            mF, Color.White, npc.rotation + (float)Math.PI / 2 + angle,
+                            new Vector2(mF.Width * 0.5f, mF.Height * 0.5f), 1f, SpriteEffects.None, 0f);
+                spriteBatch.Draw(mod.GetTexture("NPCs/AncientMachine/BloodBlade_Glow"), npc.Center - Main.screenPosition + PolarVector(MissileOffset.X, npc.rotation) + PolarVector(-MissileOffset.Y, npc.rotation + (float)Math.PI / 2) + PolarVector(-missileReloadCounter / 2, npc.rotation - angle),
+                            mF, Color.White, npc.rotation + (float)Math.PI / 2 - angle,
+                            new Vector2(mF.Width * 0.5f, mF.Height * 0.5f), 1f, SpriteEffects.None, 0f);
+                spriteBatch.Draw(mod.GetTexture("NPCs/AncientMachine/AncientMachine"), npc.Center - Main.screenPosition,
+                            npc.frame, drawColor, npc.rotation,
+                            new Vector2(npc.width * 0.5f, npc.height * 0.5f), 1f, SpriteEffects.None, 0f);
+                spriteBatch.Draw(mod.GetTexture("NPCs/AncientMachine/AncientMachine_Glow"), npc.Center - Main.screenPosition,
+                            npc.frame, Color.White, npc.rotation,
+                            new Vector2(npc.width * 0.5f, npc.height * 0.5f), 1f, SpriteEffects.None, 0f);
+
+                return false;
+            };*/
+        }
+    }
+}
+>>>>>>> Stashed changes

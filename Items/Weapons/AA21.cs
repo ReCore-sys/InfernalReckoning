@@ -63,8 +63,7 @@ namespace InfernalReckoning.Items.Weapons
         }*/
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<spirit>(), 50);
+            SpiritRecipe recipe = new SpiritRecipe(mod, NPCID.Guide, 500);
             recipe.AddTile(ModContent.TileType<Tiles.Altar>());
             recipe.AddIngredient(ItemID.Minishark);
             recipe.AddIngredient(ItemID.Shotgun);

@@ -36,8 +36,9 @@ namespace InfernalReckoning.Items.Weapons
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<spirit>(), 25);
+            SpiritRecipe recipe = new SpiritRecipe(mod, NPCID.Guide, 400);
+            recipe.AddIngredient(ItemID.Stynger, 1);
+            recipe.AddIngredient(ItemID.HallowedBar, 10);
             recipe.AddTile(ModContent.TileType<Tiles.Altar>());
             recipe.SetResult(this);
             recipe.AddRecipe();

@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using InfernalReckoning;
+using InfernalReckoning.Items.Weapons;
 
 namespace InfernalReckoning.Items
 {
@@ -13,6 +15,7 @@ namespace InfernalReckoning.Items
 			Tooltip.SetDefault("This can't end well...");
 			DisplayName.SetDefault("Rune of Eligos");
 
+<<<<<<< Updated upstream
 		}
 
 		public override void SetDefaults()
@@ -84,5 +87,44 @@ namespace InfernalReckoning.Items
 		recipe.AddRecipe();
 		*/
 	}
+=======
+        }
+        public override void AddRecipes()
+        {
+            SpiritRecipe recipe = new SpiritRecipe(mod, NPCID.Guide, 75);
+            recipe.AddIngredient(ItemID.HallowedBar, 15);
+            recipe.AddIngredient(ItemID.TempleKey, 1);
+            recipe.AddTile(ModContent.TileType<Tiles.Altar>());
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
+        public override void SetDefaults()
+        {
+            item.width = 20;
+            item.height = 20;
+            item.value = Item.sellPrice(0, 50, 0, 0);
+            item.rare = 11;
+            item.useAnimation = 45;
+            item.useTime = 45;
+            item.useStyle = 4;
+            item.UseSound = SoundID.Item44;
+        }
+        // We use the CanUseItem hook to prevent a player from using this item while the boss is present in the world.
+        public override bool CanUseItem(Player player)
+        {
+            return !Main.dayTime;
+        }
+
+        public override bool UseItem(Player player)
+        {
+            if (Main.netMode != 1)
+            {
+                NPC.NewNPC((int)player.Center.X, (int)player.Center.Y - 240, mod.NPCType("Eligos"));
+            }
+            return true;
+        }
+        
+    }
+>>>>>>> Stashed changes
 }
 
