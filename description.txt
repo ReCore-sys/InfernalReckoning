@@ -6,8 +6,16 @@ Changelog:
 Infernal Reckoning is a mod based around ritual and sacrifice. Currently it is in beta meaning not much will work and some items will be unobtainable. I also need to do balancing so that will be a pain. But for now, you can suffer.
 Questions? Bugs? Ideas? Come see us in the discord server! The website below is a link to the server.
 
+Currently there is no in-game way to find out how much spirit is needed to craft each item. For now there will be a list on the discord. A guide in-game is in the works.
+
 Changelog:
+<<<<<<< Updated upstream
 0.2.0: I though this way cool enough to warrant a "minor update" title. Spirit is now a thing! You get it from murdering stuff and can use it in crafting and weapons. Later I will do some method of showing you how much Spirit you need for each item to craft. Also redid the boss's AI so now you are all well and truly fucked. But now now drops some pretty cool loot.
+=======
+0.2.1: So I lost a large chunk of code and sprites thanks to github. I got most of it back but there might be a few changes. I might release a few updates fixing those. Anyway, I also changed the Vorax a bit cos the North Pole was way too OP. Enjoy!
+
+0.2.0: I though this way cool enough to warrant a "minor update" title. Spirit is now a thing! You get it from murdering stuff and can use it in crafting and weapons. Later I will do some method of showing you how much Spirit you need for each item to craft.
+>>>>>>> Stashed changes
 
 >>>>>>> Stashed changes
 0.1.2: Turns out, it's hard to debug when terraria does not work. The altar sprite was messed up in the last update but now it's fixed. Also changed Eligos's projectile from a demon scyth to a custom projectile. Damage also doubled and idk why. Have fun with that.

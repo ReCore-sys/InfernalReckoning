@@ -11,6 +11,7 @@ namespace InfernalReckoning.NPCs
 
         public override void NPCLoot(NPC npc)
         {
+<<<<<<< Updated upstream
             if (npc.lifeMax > 5 && npc.value > 0f)
             {
                 Item.NewItem(npc.getRect(), ModContent.ItemType<spirit>());
@@ -150,6 +151,9 @@ namespace InfernalReckoning.NPCs
 		public override bool PreChatButtonClicked(NPC npc, bool firstButton) {
 			return !Main.LocalPlayer.HasBuff(BuffID.Stinky);
 		}*/
+=======
+           
+>>>>>>> Stashed changes
         }
 =======
         

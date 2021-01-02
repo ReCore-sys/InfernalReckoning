@@ -16,7 +16,7 @@ namespace InfernalReckoning.Items.Weapons
         {
             item.ranged = true;
             item.noMelee = true;
-            item.damage = 140;
+            item.damage = 180;
             item.knockBack = 4;
             item.shootSpeed = 0f;
             item.autoReuse = true;
@@ -36,9 +36,15 @@ namespace InfernalReckoning.Items.Weapons
         }
         public override void AddRecipes()
         {
+<<<<<<< Updated upstream
             SpiritRecipe recipe = new SpiritRecipe(mod, NPCID.Guide, 400);
             recipe.AddIngredient(ItemID.Stynger, 1);
             recipe.AddIngredient(ItemID.HallowedBar, 10);
+=======
+            SpiritRecipe recipe = new SpiritRecipe(mod, NPCID.Guide, 150);
+            recipe.AddIngredient(ModContent.ItemType<Veerium>(), 25);
+            recipe.AddIngredient(ItemID.Stynger);
+>>>>>>> Stashed changes
             recipe.AddTile(ModContent.TileType<Tiles.Altar>());
             recipe.SetResult(this);
             recipe.AddRecipe();

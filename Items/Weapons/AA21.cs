@@ -63,7 +63,12 @@ namespace InfernalReckoning.Items.Weapons
         }*/
         public override void AddRecipes()
         {
+<<<<<<< Updated upstream
             SpiritRecipe recipe = new SpiritRecipe(mod, NPCID.Guide, 500);
+=======
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Veerium>(), 50);
+>>>>>>> Stashed changes
             recipe.AddTile(ModContent.TileType<Tiles.Altar>());
             recipe.AddIngredient(ItemID.Minishark);
             recipe.AddIngredient(ItemID.Shotgun);

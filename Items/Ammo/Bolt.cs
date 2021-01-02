@@ -1,3 +1,4 @@
+using InfernalReckoning.Items.Weapons;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -7,7 +8,7 @@ namespace InfernalReckoning.Items.Ammo
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Boltor round");
+            DisplayName.SetDefault("Boltor Round");
             Tooltip.SetDefault("For when the anti-tank gun just isn't cutting it");
         }
         public override void SetDefaults()
@@ -28,9 +29,9 @@ namespace InfernalReckoning.Items.Ammo
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.DirtBlock);
-            recipe.SetResult(this);
+            SpiritRecipe recipe = new SpiritRecipe(mod, NPCID.Guide, 20);
+            recipe.AddIngredient(ItemID.StyngerBolt, 10);
+            recipe.SetResult(this, 10);
             recipe.AddRecipe();
         }
     }

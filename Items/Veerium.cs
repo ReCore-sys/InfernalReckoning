@@ -1,4 +1,7 @@
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -10,8 +13,12 @@ namespace InfernalReckoning.Items
     {
         public override void SetStaticDefaults()
         {
+<<<<<<< Updated upstream
 			DisplayName.SetDefault("Veerium bar");
 			Tooltip.SetDefault("It pulses with unholy energy");
+=======
+            Tooltip.SetDefault("It pulses with unholy energy...");
+>>>>>>> Stashed changes
         }
 
         public override void SetDefaults()

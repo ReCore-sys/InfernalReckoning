@@ -9,7 +9,10 @@ using Terraria.ModLoader;
 namespace InfernalReckoning.NPCs.Eligos
 {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     // Party Zombie is a pretty basic clone of a vanilla NPC. To learn how to further adapt vanilla NPC behaviors, see https://github.com/tModLoader/tModLoader/wiki/Advanced-Vanilla-Code-Adaption#example-npc-npc-clone-with-modified-projectile-hoplite
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     public class Eligos : ModNPC
@@ -18,6 +21,7 @@ namespace InfernalReckoning.NPCs.Eligos
         {
             DisplayName.SetDefault("Eligos");
         }
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 
 =======
@@ -30,6 +34,13 @@ namespace InfernalReckoning.NPCs.Eligos
             Item.NewItem(npc.getRect(), mod.ItemType("Veerium"), Main.rand.Next(8, 15));
             int choice = dropChooser;
             Item.NewItem(npc.getRect(), choice);
+=======
+        public override void NPCLoot()
+        {
+            Item.NewItem(npc.getRect(), mod.ItemType("Veerium"), Main.rand.Next(8, 15));
+            Item.NewItem(npc.getRect(), ItemID.GreaterHealingPotion, Main.rand.Next(5, 10));
+            Item.NewItem(npc.getRect(), ItemID.GreaterManaPotion, Main.rand.Next(5, 10));
+>>>>>>> Stashed changes
         }
 >>>>>>> Stashed changes
         public override void SetDefaults()
@@ -44,11 +55,18 @@ namespace InfernalReckoning.NPCs.Eligos
             npc.value = 60f;
             npc.knockBackResist = 0f;
             npc.aiStyle = -1;
+<<<<<<< Updated upstream
             //aiType = 10;
             animationType = -1;
             npc.noGravity = true;
             npc.noTileCollide = true;
             npc.lifeMax = 40000;
+=======
+            animationType = -1;
+            npc.noGravity = true;
+            npc.noTileCollide = true;
+            npc.lifeMax = 30000;
+>>>>>>> Stashed changes
             npc.buffImmune[20] = true;
         }
 
@@ -58,6 +76,7 @@ namespace InfernalReckoning.NPCs.Eligos
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+<<<<<<< Updated upstream
         {
             npc.lifeMax = (int)(npc.lifeMax * 0.6f * bossLifeScale);
             npc.damage = (int)(npc.damage * .6f);
@@ -65,6 +84,15 @@ namespace InfernalReckoning.NPCs.Eligos
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
+=======
+        {
+            npc.lifeMax = (int)(npc.lifeMax * 0.6f * bossLifeScale);
+            npc.damage = (int)(npc.damage * .6f);
+        }
+
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        {
+>>>>>>> Stashed changes
             return 0f;
         }
         public static Vector2 PolarVector(float radius, float theta)
@@ -186,7 +214,11 @@ namespace InfernalReckoning.NPCs.Eligos
                     {
                         NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y + 64, NPCID.Demon);
                         NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y - 64, NPCID.Demon);
+<<<<<<< Updated upstream
                         NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.RedDevil);
+=======
+                        NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.Demon);
+>>>>>>> Stashed changes
                         Timer = 0;
                     }
                 }
@@ -367,7 +399,11 @@ namespace InfernalReckoning.NPCs.Eligos
                                 {
                                     if (Main.netMode != 1)
                                     {
+<<<<<<< Updated upstream
                                         Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos((npc.rotation + r * (float)Math.PI / 6) - (float)Math.PI / 4) * orbSpeed, (float)Math.Sin((npc.rotation + r * (float)Math.PI / 6) - (float)Math.PI / 4) * orbSpeed, mod.ProjectileType("AncientEnergy"), damage, 3f, Main.myPlayer);
+=======
+                                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos((npc.rotation + r * (float)Math.PI / 6) - (float)Math.PI / 4) * orbSpeed, (float)Math.Sin((npc.rotation + r * (float)Math.PI / 6) - (float)Math.PI / 4) * orbSpeed, mod.ProjectileType("BloodBlade"), damage, 3f, Main.myPlayer);
+>>>>>>> Stashed changes
                                     }
                                 }
                             }
@@ -394,7 +430,11 @@ namespace InfernalReckoning.NPCs.Eligos
                         Main.PlaySound(25, npc.position, 0);
                         if (Main.netMode != 1)
                         {
+<<<<<<< Updated upstream
                             Projectile.NewProjectile(npc.Center, new Vector2((float)Math.Cos((npc.rotation)), (float)Math.Sin(npc.rotation)) * orbSpeed, mod.ProjectileType("AncientEnergy"), damage, 3f, Main.myPlayer);
+=======
+                            Projectile.NewProjectile(npc.Center, new Vector2((float)Math.Cos((npc.rotation)), (float)Math.Sin(npc.rotation)) * orbSpeed, mod.ProjectileType("BloodBlade"), damage, 3f, Main.myPlayer);
+>>>>>>> Stashed changes
                         }
                     }
                     if (AI_Timer == 3 * switchTime / 4 && angry)
@@ -402,7 +442,11 @@ namespace InfernalReckoning.NPCs.Eligos
                         Main.PlaySound(25, npc.position, 0);
                         if (Main.netMode != 1)
                         {
+<<<<<<< Updated upstream
                             Projectile.NewProjectile(npc.Center, new Vector2((float)Math.Cos((npc.rotation)), (float)Math.Sin(npc.rotation)) * orbSpeed, mod.ProjectileType("AncientEnergy"), damage, 3f, Main.myPlayer);
+=======
+                            Projectile.NewProjectile(npc.Center, new Vector2((float)Math.Cos((npc.rotation)), (float)Math.Sin(npc.rotation)) * orbSpeed, mod.ProjectileType("BloodBlade"), damage, 3f, Main.myPlayer);
+>>>>>>> Stashed changes
                         }
                     }
                 }
@@ -415,7 +459,11 @@ namespace InfernalReckoning.NPCs.Eligos
                     for (int i = 0; i < RingDustQty; i++)
                     {
                         float theta = Main.rand.NextFloat(-(float)Math.PI, (float)Math.PI);
+<<<<<<< Updated upstream
                         Dust dust = Dust.NewDustPerfect(npc.Center, mod.DustType("AncientGlow"), PolarVector(RingRadius / 10, theta));
+=======
+                        Dust dust = Dust.NewDustPerfect(npc.Center, DustID.Blood, PolarVector(RingRadius / 10, theta));
+>>>>>>> Stashed changes
                         dust.noGravity = true;
                     }
                     justTeleported = false;
@@ -423,7 +471,9 @@ namespace InfernalReckoning.NPCs.Eligos
             }
 <<<<<<< Updated upstream
         }
+        
     }
+<<<<<<< Updated upstream
 }
 /*public override void HitEffect(int hitDirection, double damage)
 {
@@ -475,5 +525,8 @@ namespace InfernalReckoning.NPCs.Eligos
             };*/
         }
     }
+}
+>>>>>>> Stashed changes
+=======
 }
 >>>>>>> Stashed changes
