@@ -32,9 +32,6 @@ namespace InfernalReckoning.Items.Weapons
             item.useAmmo = AmmoID.Bullet; // The "ammo Id" of the ammo item that this weapon uses. Note that this is not an item Id, but just a magic value.
         }
 
-<<<<<<< Updated upstream
-        
-=======
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
@@ -43,7 +40,6 @@ namespace InfernalReckoning.Items.Weapons
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
->>>>>>> Stashed changes
 
         /*
 		 * Feel free to uncomment any of the examples below to see what they do

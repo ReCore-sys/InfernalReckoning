@@ -2,7 +2,6 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Utilities;
 
 namespace InfernalReckoning.Items.Weapons
 {
@@ -49,9 +48,10 @@ namespace InfernalReckoning.Items.Weapons
               perturbedSpeed = perturbedSpeed * scale;
               Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, type, damage, knockBack, player.whoAmI);
               
-            }
-          return false; // return false because we don't want tmodloader to shoot projectil
+          }
+          return false; // return false because we don't want tModLoader to shoot projectile
         }
+        
         /*public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             Vector2 muzzleOffset = Vector2.Normalize(new Vector2(speedX, speedY)) * 25f;
@@ -61,14 +61,11 @@ namespace InfernalReckoning.Items.Weapons
             }
             return true;
         }*/
+        
         public override void AddRecipes()
         {
-<<<<<<< Updated upstream
-            SpiritRecipe recipe = new SpiritRecipe(mod, NPCID.Guide, 500);
-=======
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Veerium>(), 50);
->>>>>>> Stashed changes
             recipe.AddTile(ModContent.TileType<Tiles.Altar>());
             recipe.AddIngredient(ItemID.Minishark);
             recipe.AddIngredient(ItemID.Shotgun);

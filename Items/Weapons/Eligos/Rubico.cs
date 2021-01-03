@@ -55,23 +55,23 @@ namespace InfernalReckoning.Items.Weapons.Eligos
         }
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            if (player.GetModPlayer<MyPlayer>().Spirit >= 10)
-            {
-                if (Main.rand.NextFloat() >= .60f)
-                {
-                    player.GetModPlayer<MyPlayer>().Spirit -= 1;
-                }
-                for (int i = 0; i < 1; i++)
-                {
-                    float trueSpeed = new Vector2(speedX, speedY).Length();
-                    float rot = new Vector2(speedX, speedY).ToRotation();
-                    Vector2 Rposition = position + PolarVector(-1200, rot + Main.rand.NextFloat(-(float)Math.PI / 32, (float)Math.PI / 32));
-                    Vector2 goHere = Main.MouseWorld + PolarVector(Main.rand.NextFloat(-40, 40), rot + (float)Math.PI / 2);
-                    Vector2 diff = goHere - Rposition;
-                    float dist = diff.Length();
-                    int proj = Projectile.NewProjectile(Rposition, diff.SafeNormalize(Vector2.UnitY) * trueSpeed, type, damage, knockBack, player.whoAmI); Main.projectile[proj].tileCollide = false;
-                }
-            }
+            //if (player.GetModPlayer<MyPlayer>().Spirit >= 10)
+            //{
+            //    if (Main.rand.NextFloat() >= .60f)
+            //    {
+            //        player.GetModPlayer<MyPlayer>().Spirit -= 1;
+            //    }
+            //    for (int i = 0; i < 1; i++)
+            //    {
+            //        float trueSpeed = new Vector2(speedX, speedY).Length();
+            //        float rot = new Vector2(speedX, speedY).ToRotation();
+            //        Vector2 Rposition = position + PolarVector(-1200, rot + Main.rand.NextFloat(-(float)Math.PI / 32, (float)Math.PI / 32));
+            //        Vector2 goHere = Main.MouseWorld + PolarVector(Main.rand.NextFloat(-40, 40), rot + (float)Math.PI / 2);
+            //        Vector2 diff = goHere - Rposition;
+            //        float dist = diff.Length();
+            //        int proj = Projectile.NewProjectile(Rposition, diff.SafeNormalize(Vector2.UnitY) * trueSpeed, type, damage, knockBack, player.whoAmI); Main.projectile[proj].tileCollide = false;
+            //    }
+            //}
             return false;
         }
         public override void AddRecipes()

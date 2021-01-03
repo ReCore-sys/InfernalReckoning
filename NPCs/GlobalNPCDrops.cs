@@ -1,22 +1,21 @@
+using InfernalReckoning.Items;
 using Terraria;
 using Terraria.ModLoader;
-using InfernalReckoning.Items;
 
 namespace InfernalReckoning.NPCs
 {
-    public class GlobalNPCDrops : GlobalNPC
-    {
-<<<<<<< Updated upstream
-        public override bool InstancePerEntity => true;
+	public class GlobalNPCDrops : GlobalNPC
+	{
+		public override bool InstancePerEntity => true;
 
-        public override void NPCLoot(NPC npc)
-        {
-<<<<<<< Updated upstream
-            if (npc.lifeMax > 5 && npc.value > 0f)
-            {
-                Item.NewItem(npc.getRect(), ModContent.ItemType<spirit>());
-            }
-            /*if ((npc.type == NPCID.Pumpking && Main.pumpkinMoon || npc.type == NPCID.IceQueen && Main.snowMoon) && NPC.waveNumber > 10)
+		public override void NPCLoot(NPC npc)
+		{
+			if (npc.lifeMax > 5 && npc.value > 0f)
+			{
+				Item.NewItem(npc.getRect(), ModContent.ItemType<spirit>());
+			}
+
+			/*if ((npc.type == NPCID.Pumpking && Main.pumpkinMoon || npc.type == NPCID.IceQueen && Main.snowMoon) && NPC.waveNumber > 10)
 			{
 				int chance = NPC.waveNumber - 10;
 				if (Main.expertMode)
@@ -42,7 +41,7 @@ namespace InfernalReckoning.NPCs
 					Item.NewItem(npc.getRect(), mod.ItemType(type), stack);
 				}
 			}*/
-            /* See BossBags.OpenVanillaBag to see how to handle adding items to the boss bags used in expert mode. You'll want to do both for most items added to boss drops.
+			/* See BossBags.OpenVanillaBag to see how to handle adding items to the boss bags used in expert mode. You'll want to do both for most items added to boss drops.
 			if (npc.type == NPCID.DukeFishron && !Main.expertMode) {
 				Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Abomination.Bubble>(), Main.rand.Next(5, 8));
 			}
@@ -151,12 +150,6 @@ namespace InfernalReckoning.NPCs
 		public override bool PreChatButtonClicked(NPC npc, bool firstButton) {
 			return !Main.LocalPlayer.HasBuff(BuffID.Stinky);
 		}*/
-=======
-           
->>>>>>> Stashed changes
-        }
-=======
-        
->>>>>>> Stashed changes
-    }
+		}
+	}
 }

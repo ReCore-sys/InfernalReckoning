@@ -38,18 +38,18 @@ namespace InfernalReckoning.Items.Weapons.Eligos
         }
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            if (player.GetModPlayer<MyPlayer>().Spirit >= 10)
-            {
-                int numberProjectiles = 1 + Main.rand.Next(6);
-                for (int i = 0; i < numberProjectiles; i++)
-                {
-                    Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(15));
-                    float scale = 1f - (Main.rand.NextFloat() * .3f);
-                    perturbedSpeed = perturbedSpeed * scale;
-                    Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, type, damage, knockBack, player.whoAmI);
-                }
-                player.GetModPlayer<MyPlayer>().Spirit -= 10;
-            }
+            //if (player.GetModPlayer<MyPlayer>().Spirit >= 10)
+            //{
+            //    int numberProjectiles = 1 + Main.rand.Next(6);
+            //    for (int i = 0; i < numberProjectiles; i++)
+            //    {
+            //        Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(15));
+            //        float scale = 1f - (Main.rand.NextFloat() * .3f);
+            //        perturbedSpeed = perturbedSpeed * scale;
+            //        Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, type, damage, knockBack, player.whoAmI);
+            //    }
+            //    player.GetModPlayer<MyPlayer>().Spirit -= 10;
+            //}
 
             return false; // return false because we don't want tmodloader to shoot projectile
         }

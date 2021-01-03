@@ -1,4 +1,3 @@
-
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -6,25 +5,25 @@ using Terraria.ModLoader;
 
 namespace InfernalReckoning.Items
 {
-    public class spirit : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
-            Tooltip.SetDefault("The spirit of your foes");
-            Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(5, 6));
-        }
+	public class spirit : ModItem
+	{
+		public override void SetStaticDefaults()
+		{
+			Tooltip.SetDefault("The spirit of your foes");
+			Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(5, 6));
+		}
 
-        public override void SetDefaults()
-        {
-            item.width = 20;
-            item.height = 20;
-            item.maxStack = 999;
-            item.value = 0;
-            item.rare = ItemRarityID.Blue;
-        }
+		public override void SetDefaults()
+		{
+			item.width = 20;
+			item.height = 20;
+			item.maxStack = 999;
+			item.value = 0;
+			item.rare = ItemRarityID.Blue;
+		}
 
 
-        /*public override void AddRecipes()
+		/*public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(ItemID.DirtBlock);
@@ -35,7 +34,7 @@ namespace InfernalReckoning.Items
 			recipe.SetResult(this, 999);
 			recipe.AddRecipe();*/
 
-        /*
+		/*
 		// Start a new Recipe. (Prepend with "ModRecipe " if 1st recipe in code block.)
 		recipe = new ModRecipe(mod);
 		// Add a Vanilla Ingredient. 
@@ -67,6 +66,5 @@ namespace InfernalReckoning.Items
 		// Finish your recipe
 		recipe.AddRecipe();
 		*/
-    }
+	}
 }
-

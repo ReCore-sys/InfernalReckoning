@@ -36,15 +36,9 @@ namespace InfernalReckoning.Items.Weapons
         }
         public override void AddRecipes()
         {
-<<<<<<< Updated upstream
-            SpiritRecipe recipe = new SpiritRecipe(mod, NPCID.Guide, 400);
-            recipe.AddIngredient(ItemID.Stynger, 1);
-            recipe.AddIngredient(ItemID.HallowedBar, 10);
-=======
             SpiritRecipe recipe = new SpiritRecipe(mod, NPCID.Guide, 150);
             recipe.AddIngredient(ModContent.ItemType<Veerium>(), 25);
             recipe.AddIngredient(ItemID.Stynger);
->>>>>>> Stashed changes
             recipe.AddTile(ModContent.TileType<Tiles.Altar>());
             recipe.SetResult(this);
             recipe.AddRecipe();
