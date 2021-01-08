@@ -8,13 +8,11 @@ namespace InfernalReckoning.Items.Weapons.Eligos
     //Here's the item where we will add our recipe
     public class Attarax : ModItem
     {
-        
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Attarax");
             Tooltip.SetDefault("This doesn't feel quite right...\n[c/ff0000:Uses 10 spirit]");
         }
-
 
         public override void SetDefaults()
         {
@@ -30,12 +28,13 @@ namespace InfernalReckoning.Items.Weapons.Eligos
             item.width = 40;
             item.height = 20;
             item.scale = 0.5f;
-            item.rare = 7;
+            item.rare = ItemRarityID.Lime;
             item.value = 10000;
             item.maxStack = 1;
             item.shoot = mod.ProjectileType("BloodbladeP");
             item.shootSpeed = 9;
         }
+
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             if (player.GetModPlayer<MyPlayer>().Spirit >= 10)

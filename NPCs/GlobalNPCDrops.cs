@@ -1,21 +1,14 @@
 using Terraria;
 using Terraria.ModLoader;
-using InfernalReckoning.Items;
 
 namespace InfernalReckoning.NPCs
 {
     public class GlobalNPCDrops : GlobalNPC
     {
-<<<<<<< Updated upstream
         public override bool InstancePerEntity => true;
 
         public override void NPCLoot(NPC npc)
         {
-<<<<<<< Updated upstream
-            if (npc.lifeMax > 5 && npc.value > 0f)
-            {
-                Item.NewItem(npc.getRect(), ModContent.ItemType<spirit>());
-            }
             /*if ((npc.type == NPCID.Pumpking && Main.pumpkinMoon || npc.type == NPCID.IceQueen && Main.snowMoon) && NPC.waveNumber > 10)
 			{
 				int chance = NPC.waveNumber - 10;
@@ -108,11 +101,11 @@ namespace InfernalReckoning.NPCs
 				shop.item[nextSlot].SetDefaults(ModContent.ItemType<CarKey>());
 				nextSlot++;
 
-				// We can use shopCustomPrice and shopSpecialCurrency to support custom prices and currency. Usually a shop sells an item for item.value. 
+				// We can use shopCustomPrice and shopSpecialCurrency to support custom prices and currency. Usually a shop sells an item for item.value.
 				// Editing item.value in SetupShop is an incorrect approach.
 				shop.item[nextSlot].SetDefaults(ModContent.ItemType<CarKey>());
 				shop.item[nextSlot].shopCustomPrice = 2;
-				shop.item[nextSlot].shopSpecialCurrency = CustomCurrencyID.DefenderMedals; // omit this line if shopCustomPrice should be in regular coins. 
+				shop.item[nextSlot].shopSpecialCurrency = CustomCurrencyID.DefenderMedals; // omit this line if shopCustomPrice should be in regular coins.
 				nextSlot++;
 
 				shop.item[nextSlot].SetDefaults(ModContent.ItemType<CarKey>());
@@ -137,9 +130,11 @@ namespace InfernalReckoning.NPCs
 					case 0:
 						chat = "Eugh, you smell of rancid fish!";
 						break;
+
 					case 1:
 						chat = "What's that horrid smell?!";
 						break;
+
 					default:
 						chat = "Get away from me, i'm not doing any business with you.";
 						break;
@@ -151,12 +146,6 @@ namespace InfernalReckoning.NPCs
 		public override bool PreChatButtonClicked(NPC npc, bool firstButton) {
 			return !Main.LocalPlayer.HasBuff(BuffID.Stinky);
 		}*/
-=======
-           
->>>>>>> Stashed changes
         }
-=======
-        
->>>>>>> Stashed changes
     }
 }

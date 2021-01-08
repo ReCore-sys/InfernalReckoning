@@ -34,21 +34,17 @@ namespace InfernalReckoning.Items.Weapons
             item.useAmmo = mod.ItemType("Bolt");
             item.shoot = ProjectileID.Bullet; //idk why but all the guns in the vanilla source have this
         }
+
         public override void AddRecipes()
         {
-<<<<<<< Updated upstream
             SpiritRecipe recipe = new SpiritRecipe(mod, NPCID.Guide, 400);
             recipe.AddIngredient(ItemID.Stynger, 1);
             recipe.AddIngredient(ItemID.HallowedBar, 10);
-=======
-            SpiritRecipe recipe = new SpiritRecipe(mod, NPCID.Guide, 150);
-            recipe.AddIngredient(ModContent.ItemType<Veerium>(), 25);
-            recipe.AddIngredient(ItemID.Stynger);
->>>>>>> Stashed changes
             recipe.AddTile(ModContent.TileType<Tiles.Altar>());
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
+
         public override Vector2? HoldoutOffset()
         {
             return new Vector2(5, 0);

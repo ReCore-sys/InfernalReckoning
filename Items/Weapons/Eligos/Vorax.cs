@@ -7,13 +7,11 @@ namespace InfernalReckoning.Items.Weapons.Eligos
 {
     public class Vorax : ModItem
     {
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Vorax");
             Tooltip.SetDefault("I can feel the dark magic...\n[c/ff0000:Uses 10 spirit]");
         }
-
 
         public override void SetDefaults()
         {
@@ -36,6 +34,7 @@ namespace InfernalReckoning.Items.Weapons.Eligos
             item.maxStack = 1;
             item.shoot = ProjectileID.ChainKnife;
         }
+
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             if (player.GetModPlayer<MyPlayer>().Spirit >= 16)
@@ -56,6 +55,7 @@ namespace InfernalReckoning.Items.Weapons.Eligos
             }
             return true;
         }
+
         public override void AddRecipes()
         {
             SpiritRecipe recipe = new SpiritRecipe(mod, NPCID.Guide, 200);
@@ -66,5 +66,4 @@ namespace InfernalReckoning.Items.Weapons.Eligos
             recipe.AddRecipe();
         }
     }
-    
 }

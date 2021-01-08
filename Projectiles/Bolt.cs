@@ -26,15 +26,18 @@ namespace InfernalReckoning.Projectiles
             projectile.aiStyle = 0; //How the projectile works, this is no AI, it just goes a straight path
             projectile.extraUpdates = 4;
         }
+
         public override void AI()
         {
             projectile.rotation = projectile.velocity.ToRotation();
             Lighting.AddLight(projectile.position, 0.5f, 0.25f, 0.125f);
         }
+
         /*public override Color? GetAlpha(Color lightColor)
         {
             return Color.Lerp(lightColor, new Color(1f, 1f, 1f), 0.5f);
         }*/
+
         public override bool PreKill(int timeLeft)
         {
             projectile.tileCollide = false;
@@ -49,6 +52,7 @@ namespace InfernalReckoning.Projectiles
             projectile.penetrate = -1;
             return true;
         }
+
         public override void Kill(int timeLeft)
         {
             Main.PlaySound(SoundID.NPCDeath14.WithVolume(.3f).WithPitchVariance(.5f), projectile.position); //plays impact sound
@@ -87,5 +91,4 @@ namespace InfernalReckoning.Projectiles
             }
         }
     }
-
 }

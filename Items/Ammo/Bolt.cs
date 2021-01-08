@@ -11,6 +11,7 @@ namespace InfernalReckoning.Items.Ammo
             DisplayName.SetDefault("Boltor Round");
             Tooltip.SetDefault("For when the anti-tank gun just isn't cutting it");
         }
+
         public override void SetDefaults()
         {
             item.damage = 10; //This is added with the weapon's damage
@@ -35,5 +36,4 @@ namespace InfernalReckoning.Items.Ammo
             recipe.AddRecipe();
         }
     }
-
 }

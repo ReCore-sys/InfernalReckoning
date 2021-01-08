@@ -34,7 +34,6 @@ namespace InfernalReckoning.Items.Weapons.Eligos
             item.useAmmo = AmmoID.Bullet;
         }
 
-        
         public static float AngularDifference(float angle1, float angle2)
         {
             angle1 = PolarVector(1f, angle1).ToRotation();
@@ -45,14 +44,17 @@ namespace InfernalReckoning.Items.Weapons.Eligos
             }
             return Math.Abs(angle1 - angle2);
         }
+
         public static Vector2 PolarVector(float radius, float theta)
         {
             return new Vector2((float)Math.Cos(theta), (float)Math.Sin(theta)) * radius;
         }
+
         public override bool ConsumeAmmo(Player player)
         {
             return Main.rand.NextFloat() >= .60f;
         }
+
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             if (player.GetModPlayer<MyPlayer>().Spirit >= 10)
@@ -74,6 +76,7 @@ namespace InfernalReckoning.Items.Weapons.Eligos
             }
             return false;
         }
+
         public override void AddRecipes()
         {
             SpiritRecipe recipe = new SpiritRecipe(mod, NPCID.Guide, 200);
@@ -83,7 +86,5 @@ namespace InfernalReckoning.Items.Weapons.Eligos
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
-
     }
-    
 }

@@ -1,48 +1,32 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.Utilities;
 
 namespace InfernalReckoning.NPCs.Eligos
 {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
     // Party Zombie is a pretty basic clone of a vanilla NPC. To learn how to further adapt vanilla NPC behaviors, see https://github.com/tModLoader/tModLoader/wiki/Advanced-Vanilla-Code-Adaption#example-npc-npc-clone-with-modified-projectile-hoplite
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
     public class Eligos : ModNPC
     {
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Eligos");
         }
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 
-=======
         public override void NPCLoot()
         {
             var dropChooser = new WeightedRandom<int>();
-            dropChooser.Add(ModContent.ItemType<Items.Weapons.Attarax>());
-            dropChooser.Add(ModContent.ItemType<Items.Weapons.Vorax>());
-            dropChooser.Add(ModContent.ItemType<Items.Weapons.Rubico>());
+            dropChooser.Add(ModContent.ItemType<Items.Weapons.Eligos.Attarax>());
+            dropChooser.Add(ModContent.ItemType<Items.Weapons.Eligos.Vorax>());
+            dropChooser.Add(ModContent.ItemType<Items.Weapons.Eligos.Rubico>());
             Item.NewItem(npc.getRect(), mod.ItemType("Veerium"), Main.rand.Next(8, 15));
             int choice = dropChooser;
             Item.NewItem(npc.getRect(), choice);
-=======
-        public override void NPCLoot()
-        {
-            Item.NewItem(npc.getRect(), mod.ItemType("Veerium"), Main.rand.Next(8, 15));
-            Item.NewItem(npc.getRect(), ItemID.GreaterHealingPotion, Main.rand.Next(5, 10));
-            Item.NewItem(npc.getRect(), ItemID.GreaterManaPotion, Main.rand.Next(5, 10));
->>>>>>> Stashed changes
         }
->>>>>>> Stashed changes
+
         public override void SetDefaults()
         {
             npc.width = 100;
@@ -55,18 +39,11 @@ namespace InfernalReckoning.NPCs.Eligos
             npc.value = 60f;
             npc.knockBackResist = 0f;
             npc.aiStyle = -1;
-<<<<<<< Updated upstream
-            //aiType = 10;
             animationType = -1;
             npc.noGravity = true;
             npc.noTileCollide = true;
             npc.lifeMax = 40000;
-=======
-            animationType = -1;
-            npc.noGravity = true;
-            npc.noTileCollide = true;
-            npc.lifeMax = 30000;
->>>>>>> Stashed changes
+
             npc.buffImmune[20] = true;
         }
 
@@ -76,7 +53,6 @@ namespace InfernalReckoning.NPCs.Eligos
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
-<<<<<<< Updated upstream
         {
             npc.lifeMax = (int)(npc.lifeMax * 0.6f * bossLifeScale);
             npc.damage = (int)(npc.damage * .6f);
@@ -84,21 +60,14 @@ namespace InfernalReckoning.NPCs.Eligos
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-=======
-        {
-            npc.lifeMax = (int)(npc.lifeMax * 0.6f * bossLifeScale);
-            npc.damage = (int)(npc.damage * .6f);
-        }
-
-        public override float SpawnChance(NPCSpawnInfo spawnInfo)
-        {
->>>>>>> Stashed changes
             return 0f;
         }
+
         public static Vector2 PolarVector(float radius, float theta)
         {
             return new Vector2((float)Math.Cos(theta), (float)Math.Sin(theta)) * radius;
         }
+
         public static float AngularDifference(float angle1, float angle2)
         {
             angle1 = PolarVector(1f, angle1).ToRotation();
@@ -109,25 +78,22 @@ namespace InfernalReckoning.NPCs.Eligos
             }
             return Math.Abs(angle1 - angle2);
         }
+
         public override void HitEffect(int hitDirection, double damage)
         {
             if (npc.life <= 0)
             {
                 Vector2 pos = npc.Center + PolarVector(98, npc.rotation) + PolarVector(120, npc.rotation + (float)Math.PI / 2);
 
-
                 pos = npc.Center + PolarVector(98, npc.rotation) + PolarVector(120, npc.rotation + (float)Math.PI / 2);
-
 
                 pos = npc.Center + PolarVector(144, npc.rotation) + PolarVector(67, npc.rotation + (float)Math.PI / 2);
 
                 pos = npc.Center + PolarVector(144, npc.rotation) + PolarVector(-67, npc.rotation + (float)Math.PI / 2);
 
-
                 pos = npc.Center + PolarVector(-15, npc.rotation) + PolarVector(102, npc.rotation + (float)Math.PI / 2);
 
                 pos = npc.Center + PolarVector(-15, npc.rotation) + PolarVector(-102, npc.rotation + (float)Math.PI / 2);
-
 
                 pos = npc.Center + PolarVector(-15, npc.rotation) + PolarVector(0, npc.rotation + (float)Math.PI / 2);
 
@@ -139,19 +105,15 @@ namespace InfernalReckoning.NPCs.Eligos
 
                 pos = npc.Center + PolarVector(166, npc.rotation) + PolarVector(0, npc.rotation + (float)Math.PI / 2);
 
-
                 pos = npc.Center + PolarVector(-65, npc.rotation) + PolarVector(79, npc.rotation + (float)Math.PI / 2);
 
                 pos = npc.Center + PolarVector(-65, npc.rotation) + PolarVector(-79, npc.rotation + (float)Math.PI / 2);
-
             }
         }
 
         private Vector2 MissileOffset = new Vector2();
         private const int defaultFrameX = 22;
         private const int defaultFrameY = 148;
-
-
 
         public const int RingRadius = 300;
         public const int RingDustQty = 400;
@@ -193,7 +155,6 @@ namespace InfernalReckoning.NPCs.Eligos
                     npc.TargetClosest();
                     if (npc.HasValidTarget && Main.netMode != NetmodeID.MultiplayerClient)
                     {
-
                         Vector2 position = npc.Center;
                         Vector2 targetPosition = Main.player[npc.target].Center;
                         Vector2 direction = targetPosition - position;
@@ -214,11 +175,7 @@ namespace InfernalReckoning.NPCs.Eligos
                     {
                         NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y + 64, NPCID.Demon);
                         NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y - 64, NPCID.Demon);
-<<<<<<< Updated upstream
-                        NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.RedDevil);
-=======
-                        NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.Demon);
->>>>>>> Stashed changes
+
                         Timer = 0;
                     }
                 }
@@ -399,11 +356,11 @@ namespace InfernalReckoning.NPCs.Eligos
                                 {
                                     if (Main.netMode != 1)
                                     {
-<<<<<<< Updated upstream
-                                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos((npc.rotation + r * (float)Math.PI / 6) - (float)Math.PI / 4) * orbSpeed, (float)Math.Sin((npc.rotation + r * (float)Math.PI / 6) - (float)Math.PI / 4) * orbSpeed, mod.ProjectileType("AncientEnergy"), damage, 3f, Main.myPlayer);
-=======
+                                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos((npc.rotation + r * (float)Math.PI / 6) - (float)Math.PI / 4) * orbSpeed, (float)Math.Sin((npc.rotation + r * (float)Math.PI / 6) - (float)Math.PI / 4) * orbSpeed, mod.ProjectileType("Bloodblade"), damage, 3f, Main.myPlayer);
+
                                         Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos((npc.rotation + r * (float)Math.PI / 6) - (float)Math.PI / 4) * orbSpeed, (float)Math.Sin((npc.rotation + r * (float)Math.PI / 6) - (float)Math.PI / 4) * orbSpeed, mod.ProjectileType("BloodBlade"), damage, 3f, Main.myPlayer);
->>>>>>> Stashed changes
+
+                                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos((npc.rotation + r * (float)Math.PI / 6) - (float)Math.PI / 4) * orbSpeed, (float)Math.Sin((npc.rotation + r * (float)Math.PI / 6) - (float)Math.PI / 4) * orbSpeed, mod.ProjectileType("BloodBlade"), damage, 3f, Main.myPlayer);
                                     }
                                 }
                             }
@@ -430,11 +387,11 @@ namespace InfernalReckoning.NPCs.Eligos
                         Main.PlaySound(25, npc.position, 0);
                         if (Main.netMode != 1)
                         {
-<<<<<<< Updated upstream
-                            Projectile.NewProjectile(npc.Center, new Vector2((float)Math.Cos((npc.rotation)), (float)Math.Sin(npc.rotation)) * orbSpeed, mod.ProjectileType("AncientEnergy"), damage, 3f, Main.myPlayer);
-=======
+                            Projectile.NewProjectile(npc.Center, new Vector2((float)Math.Cos((npc.rotation)), (float)Math.Sin(npc.rotation)) * orbSpeed, mod.ProjectileType("Bloodblade"), damage, 3f, Main.myPlayer);
+
                             Projectile.NewProjectile(npc.Center, new Vector2((float)Math.Cos((npc.rotation)), (float)Math.Sin(npc.rotation)) * orbSpeed, mod.ProjectileType("BloodBlade"), damage, 3f, Main.myPlayer);
->>>>>>> Stashed changes
+
+                            Projectile.NewProjectile(npc.Center, new Vector2((float)Math.Cos((npc.rotation)), (float)Math.Sin(npc.rotation)) * orbSpeed, mod.ProjectileType("BloodBlade"), damage, 3f, Main.myPlayer);
                         }
                     }
                     if (AI_Timer == 3 * switchTime / 4 && angry)
@@ -442,11 +399,11 @@ namespace InfernalReckoning.NPCs.Eligos
                         Main.PlaySound(25, npc.position, 0);
                         if (Main.netMode != 1)
                         {
-<<<<<<< Updated upstream
                             Projectile.NewProjectile(npc.Center, new Vector2((float)Math.Cos((npc.rotation)), (float)Math.Sin(npc.rotation)) * orbSpeed, mod.ProjectileType("AncientEnergy"), damage, 3f, Main.myPlayer);
-=======
+
                             Projectile.NewProjectile(npc.Center, new Vector2((float)Math.Cos((npc.rotation)), (float)Math.Sin(npc.rotation)) * orbSpeed, mod.ProjectileType("BloodBlade"), damage, 3f, Main.myPlayer);
->>>>>>> Stashed changes
+
+                            Projectile.NewProjectile(npc.Center, new Vector2((float)Math.Cos((npc.rotation)), (float)Math.Sin(npc.rotation)) * orbSpeed, mod.ProjectileType("BloodBlade"), damage, 3f, Main.myPlayer);
                         }
                     }
                 }
@@ -459,22 +416,17 @@ namespace InfernalReckoning.NPCs.Eligos
                     for (int i = 0; i < RingDustQty; i++)
                     {
                         float theta = Main.rand.NextFloat(-(float)Math.PI, (float)Math.PI);
-<<<<<<< Updated upstream
-                        Dust dust = Dust.NewDustPerfect(npc.Center, mod.DustType("AncientGlow"), PolarVector(RingRadius / 10, theta));
-=======
                         Dust dust = Dust.NewDustPerfect(npc.Center, DustID.Blood, PolarVector(RingRadius / 10, theta));
->>>>>>> Stashed changes
+
                         dust.noGravity = true;
                     }
                     justTeleported = false;
                 }
             }
-<<<<<<< Updated upstream
         }
-        
     }
-<<<<<<< Updated upstream
 }
+
 /*public override void HitEffect(int hitDirection, double damage)
 {
 			for (int i = 0; i < 10; i++) {
@@ -488,45 +440,37 @@ namespace InfernalReckoning.NPCs.Eligos
 		}
 	}
 }*/
-=======
 
-            /*public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
-            {
-                Rectangle mF = new Rectangle(0, missileGlowFrame * 36, 20, 36);
+/*public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
+{
+    Rectangle mF = new Rectangle(0, missileGlowFrame * 36, 20, 36);
 
-                /*
-                spriteBatch.Draw(mod.GetTexture("NPCs/AncientMachine/AncientMachineEquipedMissile"), new Vector2(npc.Center.X - Main.screenPosition.X, npc.Center.Y - Main.screenPosition.Y),
-                            new Rectangle(missileGlowFrame * 392, missileFrame*380, 392, 380), drawColor, npc.rotation,
-                            new Vector2(npc.width * 0.5f, npc.height * 0.5f), 1f, SpriteEffects.None, 0f);
-                spriteBatch.Draw(mod.GetTexture("NPCs/AncientMachine/AncientMachineEquipedMissile_Glow"), new Vector2(npc.Center.X - Main.screenPosition.X, npc.Center.Y - Main.screenPosition.Y),
-                            new Rectangle(missileGlowFrame * 392, missileFrame * 380, 392, 380), Color.White, npc.rotation,
-                            new Vector2(npc.width * 0.5f, npc.height * 0.5f), 1f, SpriteEffects.None, 0f);
-                spriteBatch.Draw(mod.GetTexture("NPCs/AncientMachine/BloodBlade"), npc.Center - Main.screenPosition + PolarVector(MissileOffset.X, npc.rotation) + PolarVector(MissileOffset.Y, npc.rotation + (float)Math.PI / 2) + PolarVector(-missileReloadCounter / 2, npc.rotation + angle),
-                            mF, drawColor, npc.rotation + (float)Math.PI / 2 + angle,
-                            new Vector2(mF.Width * 0.5f, mF.Height * 0.5f), 1f, SpriteEffects.None, 0f);
-                spriteBatch.Draw(mod.GetTexture("NPCs/AncientMachine/BloodBlade"), npc.Center - Main.screenPosition + PolarVector(MissileOffset.X, npc.rotation) + PolarVector(-MissileOffset.Y, npc.rotation + (float)Math.PI / 2) + PolarVector(-missileReloadCounter / 2, npc.rotation - angle),
-                            mF, drawColor, npc.rotation + (float)Math.PI / 2 - angle,
-                            new Vector2(mF.Width * 0.5f, mF.Height * 0.5f), 1f, SpriteEffects.None, 0f);
+    /*
+    spriteBatch.Draw(mod.GetTexture("NPCs/AncientMachine/AncientMachineEquipedMissile"), new Vector2(npc.Center.X - Main.screenPosition.X, npc.Center.Y - Main.screenPosition.Y),
+                new Rectangle(missileGlowFrame * 392, missileFrame*380, 392, 380), drawColor, npc.rotation,
+                new Vector2(npc.width * 0.5f, npc.height * 0.5f), 1f, SpriteEffects.None, 0f);
+    spriteBatch.Draw(mod.GetTexture("NPCs/AncientMachine/AncientMachineEquipedMissile_Glow"), new Vector2(npc.Center.X - Main.screenPosition.X, npc.Center.Y - Main.screenPosition.Y),
+                new Rectangle(missileGlowFrame * 392, missileFrame * 380, 392, 380), Color.White, npc.rotation,
+                new Vector2(npc.width * 0.5f, npc.height * 0.5f), 1f, SpriteEffects.None, 0f);
+    spriteBatch.Draw(mod.GetTexture("NPCs/AncientMachine/BloodBlade"), npc.Center - Main.screenPosition + PolarVector(MissileOffset.X, npc.rotation) + PolarVector(MissileOffset.Y, npc.rotation + (float)Math.PI / 2) + PolarVector(-missileReloadCounter / 2, npc.rotation + angle),
+                mF, drawColor, npc.rotation + (float)Math.PI / 2 + angle,
+                new Vector2(mF.Width * 0.5f, mF.Height * 0.5f), 1f, SpriteEffects.None, 0f);
+    spriteBatch.Draw(mod.GetTexture("NPCs/AncientMachine/BloodBlade"), npc.Center - Main.screenPosition + PolarVector(MissileOffset.X, npc.rotation) + PolarVector(-MissileOffset.Y, npc.rotation + (float)Math.PI / 2) + PolarVector(-missileReloadCounter / 2, npc.rotation - angle),
+                mF, drawColor, npc.rotation + (float)Math.PI / 2 - angle,
+                new Vector2(mF.Width * 0.5f, mF.Height * 0.5f), 1f, SpriteEffects.None, 0f);
 
-                spriteBatch.Draw(mod.GetTexture("NPCs/AncientMachine/BloodBlade_Glow"), npc.Center - Main.screenPosition + PolarVector(MissileOffset.X, npc.rotation) + PolarVector(MissileOffset.Y, npc.rotation + (float)Math.PI / 2) + PolarVector(-missileReloadCounter / 2, npc.rotation + angle),
-                            mF, Color.White, npc.rotation + (float)Math.PI / 2 + angle,
-                            new Vector2(mF.Width * 0.5f, mF.Height * 0.5f), 1f, SpriteEffects.None, 0f);
-                spriteBatch.Draw(mod.GetTexture("NPCs/AncientMachine/BloodBlade_Glow"), npc.Center - Main.screenPosition + PolarVector(MissileOffset.X, npc.rotation) + PolarVector(-MissileOffset.Y, npc.rotation + (float)Math.PI / 2) + PolarVector(-missileReloadCounter / 2, npc.rotation - angle),
-                            mF, Color.White, npc.rotation + (float)Math.PI / 2 - angle,
-                            new Vector2(mF.Width * 0.5f, mF.Height * 0.5f), 1f, SpriteEffects.None, 0f);
-                spriteBatch.Draw(mod.GetTexture("NPCs/AncientMachine/AncientMachine"), npc.Center - Main.screenPosition,
-                            npc.frame, drawColor, npc.rotation,
-                            new Vector2(npc.width * 0.5f, npc.height * 0.5f), 1f, SpriteEffects.None, 0f);
-                spriteBatch.Draw(mod.GetTexture("NPCs/AncientMachine/AncientMachine_Glow"), npc.Center - Main.screenPosition,
-                            npc.frame, Color.White, npc.rotation,
-                            new Vector2(npc.width * 0.5f, npc.height * 0.5f), 1f, SpriteEffects.None, 0f);
+    spriteBatch.Draw(mod.GetTexture("NPCs/AncientMachine/BloodBlade_Glow"), npc.Center - Main.screenPosition + PolarVector(MissileOffset.X, npc.rotation) + PolarVector(MissileOffset.Y, npc.rotation + (float)Math.PI / 2) + PolarVector(-missileReloadCounter / 2, npc.rotation + angle),
+                mF, Color.White, npc.rotation + (float)Math.PI / 2 + angle,
+                new Vector2(mF.Width * 0.5f, mF.Height * 0.5f), 1f, SpriteEffects.None, 0f);
+    spriteBatch.Draw(mod.GetTexture("NPCs/AncientMachine/BloodBlade_Glow"), npc.Center - Main.screenPosition + PolarVector(MissileOffset.X, npc.rotation) + PolarVector(-MissileOffset.Y, npc.rotation + (float)Math.PI / 2) + PolarVector(-missileReloadCounter / 2, npc.rotation - angle),
+                mF, Color.White, npc.rotation + (float)Math.PI / 2 - angle,
+                new Vector2(mF.Width * 0.5f, mF.Height * 0.5f), 1f, SpriteEffects.None, 0f);
+    spriteBatch.Draw(mod.GetTexture("NPCs/AncientMachine/AncientMachine"), npc.Center - Main.screenPosition,
+                npc.frame, drawColor, npc.rotation,
+                new Vector2(npc.width * 0.5f, npc.height * 0.5f), 1f, SpriteEffects.None, 0f);
+    spriteBatch.Draw(mod.GetTexture("NPCs/AncientMachine/AncientMachine_Glow"), npc.Center - Main.screenPosition,
+                npc.frame, Color.White, npc.rotation,
+                new Vector2(npc.width * 0.5f, npc.height * 0.5f), 1f, SpriteEffects.None, 0f);
 
-                return false;
-            };*/
-        }
-    }
-}
->>>>>>> Stashed changes
-=======
-}
->>>>>>> Stashed changes
+    return false;
+};*/
